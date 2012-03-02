@@ -1,42 +1,42 @@
 <html>
-	<head>
-		<title>basket.js - a simple script loader that caches scripts with localStorage</title>
-	</head>
-	<link rel="stylesheet" type="text/css" href="resources/base.css">
-	<body>
+    <head>
+        <title>basket.js - a simple script loader that caches scripts with localStorage</title>
+    </head>
+    <link rel="stylesheet" type="text/css" href="resources/base.css">
+    <body>
 
-	<div id="container">
-		<h1>basket.js</h1>
-		<h2>A simple script loader that caches scripts with localStorage </h2>
+    <div id="container">
+        <h1>basket.js</h1>
+        <h2>A simple (proof-of-concept) script loader that caches scripts with localStorage </h2>
         <p><a href="basket.js">basket.js</a> (3.8KB) &nbsp; <a href="basket.min.js">basket.min.js</a> (1.1KB) &nbsp; 
         <a href="https://twitter.com/share" class="twitter-share-button" data-text="basket.js - a simple script loader that caches scripts with localStorage" data-via="addyosmani">Tweet</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
         </p>
 
-		  <div id="message" class="content"><p><strong>If you're seeing this message, something has gone wrong. Please ensure you are testing this page using a HTTP server.</strong></p></div>
-		  <div class="content">
+          <div id="message" class="content"><p><strong>If you're seeing this message, something has gone wrong. Please ensure you are testing this page using a HTTP server.</strong></p></div>
+          <div class="content">
 
-		  <p>
-		  	Basket.js was created as a response to a <a href="https://twitter.com/#!/souders/statuses/166928191649357824">tweet</a> by Steve Souders asking that the jQuery project consider caching jQuery in localStorage for performance reasons. Intrigued by the idea, I began exploring a minimalist solution to it. <em>(Note: I am by <a href="http://www.stevesouders.com/blog/2011/03/28/storager-case-study-bing-google/">no</a> <a href="http://forrst.com/posts/localStorage_script_injection-wBm">means</a> the first person to explore this area).</em>
-		  </p>
+          <p>
+            Basket.js was created as a response to a <a href="https://twitter.com/#!/souders/statuses/166928191649357824">tweet</a> by Steve Souders asking that the jQuery project consider caching jQuery in localStorage for performance reasons. Intrigued by the idea, I began exploring a minimalist solution to it (just for the sake of experiment - nothing here should be considered for production). <em>(Note: I am by <a href="http://www.stevesouders.com/blog/2011/03/28/storager-case-study-bing-google/">no</a> <a href="http://forrst.com/posts/localStorage_script_injection-wBm">means</a> the first person to explore this area. Also, storing files in localStorage is not considered an optimal approach by many. See <a href="http://paul.kinlan.me/we-need-to-kill-off-the-localstorage-api">this post</a> on killing off the API by Paul Kinlan).</em>
+          </p>
 
-		  <p>
-		  	You may remember Souders previously did research and a <a href="http://www.stevesouders.com/blog/2011/03/28/storager-case-study-bing-google/">write-up</a> on search engines making use of localStorage caching back in 2011. His conclusions were:
-		  	<blockquote>Bing and Google Search make extensive use of localStorage for stashing SCRIPT blocks that are used on subsequent page views. None of the other top sites from my previous post use localStorage in this way. Are Bing and Google Search onto something? Yes, definitely.</blockquote>
-		  </p>
-		  <p>
-		  	 To help provide a more general solution for this problem, I put together a script loader that treats localStorage as a cache: if script(s) have previously been saved locally, they will simply be loaded and injected into the current document. If not, they will be XHR'd in for use right away, but cached so that no additional loads are required in the future.
-		  </p>
-		  <p>
-		  	basket.js is extremely simple, but it gets the job done. Let's briefly review its API:
-		  </p>
-		  <p>
-		  <ul>
-		  	<li><strong>basket.add()</strong></li>
-		  	<li><strong>basket.wait()</strong></li>
-		  </ul>
+          <p>
+            You may remember Souders previously did research and a <a href="http://www.stevesouders.com/blog/2011/03/28/storager-case-study-bing-google/">write-up</a> on search engines making use of localStorage caching back in 2011. His conclusions were:
+            <blockquote>Bing and Google Search make extensive use of localStorage for stashing SCRIPT blocks that are used on subsequent page views. None of the other top sites from my previous post use localStorage in this way. Are Bing and Google Search onto something? Yes, definitely.</blockquote>
+          </p>
+          <p>
+             To help provide a more general solution for this problem, I put together a script loader that treats localStorage as a cache: if script(s) have previously been saved locally, they will simply be loaded and injected into the current document. If not, they will be XHR'd in for use right away, but cached so that no additional loads are required in the future.
+          </p>
+          <p>
+            basket.js is extremely simple, but it gets the job done. Let's briefly review its API:
+          </p>
+          <p>
+          <ul>
+            <li><strong>basket.add()</strong></li>
+            <li><strong>basket.wait()</strong></li>
+          </ul>
 
-		  <p><strong>basket.add( uri )</strong></p>
+          <p><strong>basket.add( uri )</strong></p>
 
         <p>uri: A relative URI to a local script to load.</p>
 
@@ -118,42 +118,42 @@ basket
             The next phase for this project will be putting together <a href="http://jsperf.com">jsPerf</a> tests that compare localStorage caching vs. standard browser caching. There have been a number of attempts I've seen to previously achieve this on the site, but they have been somewhat <a href="http://jsperf.com/another-eval">unreliable</a>.</p>
             <p>The end-goal of this project is to help inform about the true benefits (or drawbacks) about localStorage caching for scripts so that developers can make informed decisions about employing the approach.
         </p>
-		  </p>
-		  </div>
-	</div>
+          </p>
+          </div>
+    </div>
 
-	<script type="text/template" id="intro">
-		<p><em>This section was rendered using the micro-templating in Underscore.js. It's just one of a number of scripts that were added to this document using basket.js when you loaded it and should now be <strong>cached</strong> in localStorage (if supported). If you visit this page again, the scripts will be loaded from there rather than being refetched. Backbone.js was also loaded and we created a new model with the name: <%= name %> (just for funsies).</em></p>
-	</script>
-
-
-	  <script src="basket.js"></script>
-	  <script>
-	     var message, str;
-
-     	 basket
-	       .add("test/jquery-1.7.1.min.js").wait()
-	       .add("test/underscore-min.js")
-      	   .add("test/backbone-min.js").wait(function() {
+    <script type="text/template" id="intro">
+        <p><em>This section was rendered using the micro-templating in Underscore.js. It's just one of a number of scripts that were added to this document using basket.js when you loaded it and should now be <strong>cached</strong> in localStorage (if supported). If you visit this page again, the scripts will be loaded from there rather than being refetched. Backbone.js was also loaded and we created a new model with the name: <%= name %> (just for funsies).</em></p>
+    </script>
 
 
-			var testModel = Backbone.Model.extend({
-			  idAttribute: "_id"
-			});
+      <script src="basket.js"></script>
+      <script>
+         var message, str;
 
-			var myModel = new testModel({ _id: 4, name: "Nyan Cat" });
-			
+         basket
+           .add("test/jquery-1.7.1.min.js").wait()
+           .add("test/underscore-min.js")
+           .add("test/backbone-min.js").wait(function() {
 
-  	   		message = $('#message');
-  	   		var templateContent = $('#intro').html();
-  	   		var compiled = _.template(templateContent);
-  	   		message.html( compiled({name: myModel.get('name')}));
 
-     	    });
+            var testModel = Backbone.Model.extend({
+              idAttribute: "_id"
+            });
 
-	  </script>
+            var myModel = new testModel({ _id: 4, name: "Nyan Cat" });
+            
+
+            message = $('#message');
+            var templateContent = $('#intro').html();
+            var compiled = _.template(templateContent);
+            message.html( compiled({name: myModel.get('name')}));
+
+            });
+
+      </script>
 
 <a href="http://github.com/addyosmani/basket.js"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/e6bef7a091f5f3138b8cd40bc3e114258dd68ddf/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub"></a>
-	</body>
+    </body>
 </html>
 
